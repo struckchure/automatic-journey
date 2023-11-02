@@ -12,10 +12,10 @@ jobs:
         run: sudo apk add --update nodejs npm
 
       - name: Install Python3 and Pip3
-        run: sudo apk add --no-cache python3 py3-pip
+        run: sudo apk add --no-cache python3=3.9.6-r0 py3-pip
 
       - name: Install depenendencies
-        run: sudo pip install -r requirements.txt
+        run: sudo pip3 install -r requirements.txt
 
       - name: Install pm2
         run: sudo npm install pm2@latest -g
@@ -23,7 +23,7 @@ jobs:
   deploy:
     steps:
       - name: Start App with pm2
-        run: pm2 start "python main.py"
+        run: pm2 start "python3 main.py"
 
       - name: Save pm2 config
         run: pm2 save
