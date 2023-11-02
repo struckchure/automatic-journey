@@ -1,4 +1,4 @@
-name: Express App Deployment
+name: Golang App Deployment
 
 on:
   push:
@@ -11,11 +11,14 @@ jobs:
       - name: Install nodejs
         run: sudo apk add --update nodejs npm
 
-      - name: Install Python3 and Pip3
-        run: sudo apk add --no-cache python3=3.9.6-r0 py3-pip
+      - name: Install Golang
+        run: sudo apk add go
 
       - name: Install depenendencies
-        run: sudo pip3 install -r requirements.txt
+        run: go mod tidy
+
+      - name: Build Golang
+        run: go build -o main
 
       - name: Install pm2
         run: sudo npm install pm2@latest -g
@@ -23,7 +26,7 @@ jobs:
   deploy:
     steps:
       - name: Start App with pm2
-        run: pm2 start "python3 main.py"
+        run: pm2 start "./main"
 
       - name: Save pm2 config
         run: pm2 save
