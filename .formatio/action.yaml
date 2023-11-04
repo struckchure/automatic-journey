@@ -18,7 +18,7 @@ jobs:
         run: go mod tidy
 
       - name: Build Golang
-        run: GOOS=linux GOARCH=amd64 go build -o main
+        run: go build -o main
 
       - name: Install pm2
         run: sudo npm install pm2@latest -g
