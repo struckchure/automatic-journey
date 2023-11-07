@@ -1,3 +1,3 @@
 # automatic-journey
 
-lorem?
+lorem
