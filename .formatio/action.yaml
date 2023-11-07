@@ -8,20 +8,17 @@ on:
 jobs:
   build:
     steps:
-      - name: Install nodejs
-        run: sudo apk add --update nodejs npm
+      - name: Install NodeJS and Golang
+        run: sudo apk add --update nodejs npm go
 
-      - name: Install Golang
-        run: sudo apk add go
+      - name: Install pm2
+        run: sudo npm install pm2@latest -g
 
       - name: Install depenendencies
         run: go mod tidy
 
-      - name: Build Golang
+      - name: Build Go App
         run: go build -o main
-
-      - name: Install pm2
-        run: sudo npm install pm2@latest -g
 
   deploy:
     steps:
