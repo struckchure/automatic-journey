@@ -1,4 +1,4 @@
-name: Golang App Deployment
+name: Golang Fiber App Deployment
 
 on:
   push:
